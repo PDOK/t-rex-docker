@@ -29,3 +29,7 @@ docker run -p 6767:6767 -v `pwd`/example:/srv/data pdok/t-rex t_rex serve --bind
 ```
 
 A list of all detected layers is available at <http://localhost:6767/>
+
+## Documentation
+
+The documentation regarding t-rex vector tile server can be found [here](https://t-rex.tileserver.ch/doc/)
