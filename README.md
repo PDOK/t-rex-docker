@@ -21,3 +21,11 @@ docker build -t pdok/t-rex .
 ```docker
 docker run pdok/t-rex t_rex --version
 ```
+
+### run example
+
+```docker
+docker run -p 6767:6767 -v `pwd`/example:/srv/data pdok/t-rex t_rex serve --bind 0.0.0.0 --datasource /srv/data/netherlands.gpkg
+```
+
+A list of all detected layers is available at <http://localhost:6767/>
