@@ -5,7 +5,7 @@ ENV RUSTUP_HOME=/usr/local/rustup \
     CARGO_HOME=/usr/local/cargo \
     PATH=/usr/local/cargo/bin:$PATH
 
-ARG trex_release="v0.11.0-pdok-dev.1.tar.gz"
+ARG trex_release="v0.11.0-pdok-dev.2.tar.gz"
 
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 089EBE08314DF160
 RUN echo "deb http://ppa.launchpad.net/ubuntugis/ubuntugis-unstable/ubuntu bionic main" >> /etc/apt/sources.list
