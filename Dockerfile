@@ -25,4 +25,4 @@ RUN apt-get update && apt-get install -y gdal-bin
 COPY --from=trex-builder /t-rex/target/release/t_rex /usr/local/bin
 
 EXPOSE 6767
-ENTRYPOINT ["/usr/bin/t_rex"]
+ENTRYPOINT ["/usr/local/bin/t_rex"]
