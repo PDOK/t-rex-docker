@@ -1,6 +1,12 @@
 # build t-rex
-FROM ubuntu:jammy as trex-builder
-RUN apt-get -y update && apt-get install -y curl make gnupg2 pkg-config openssl libssl-dev
+FROM osgeo/gdal:ubuntu-full-3.4.2 as trex-builder
+RUN apt-get -y update && apt-get install -y \
+    curl \
+    make \
+    gnupg2 \
+    pkg-config \
+    openssl \
+    libssl-dev
 ENV RUSTUP_HOME=/usr/local/rustup \
     CARGO_HOME=/usr/local/cargo \
     PATH=/usr/local/cargo/bin:$PATH
@@ -16,17 +22,16 @@ RUN mv *t-rex* t-rex
 RUN cd t-rex && cargo build --release
 
 # actual image
-FROM ubuntu:jammy
+FROM osgeo/gdal:ubuntu-full-3.4.2
 ENV TZ Europe/Amsterdam
 LABEL MAINTAINER="pdok@kadaster.nl"
 
 RUN apt-get -y update && apt-get install -y \
     curl \
-    gdal-bin \
-    gnupg2 \
-    software-properties-common
+    gnupg2
 
 COPY --from=trex-builder /t-rex/target/release/t_rex /usr/local/bin
+RUN ln -s /usr/lib/libgdal.so /usr/lib/libgdal.so.26
 
 EXPOSE 6767
 ENTRYPOINT ["/usr/local/bin/t_rex"]
